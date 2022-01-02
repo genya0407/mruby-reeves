@@ -8,19 +8,12 @@ MRuby::Build.new do |conf|
 
     # ... (snip) ...
 
-    conf.gem :github => 'genya0407/reeves'
+    conf.gem :github => 'genya0407/mruby-reeves'
 end
 ```
 ## example
-```ruby
-p Reeves.hi
-#=> "hi!!"
-t = Reeves.new "hello"
-p t.hello
-#=> "hello"
-p t.bye
-#=> "hello bye"
-```
+
+TODO
 
 ## License
 under the MIT License:
