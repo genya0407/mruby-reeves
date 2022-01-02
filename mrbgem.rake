@@ -1,4 +1,4 @@
-MRuby::Gem::Specification.new('reeves') do |spec|
+MRuby::Gem::Specification.new('mruby-reeves') do |spec|
   spec.license = 'MIT'
   spec.authors = 'Yusuke Sangenya'
   spec.add_dependency 'mruby-shelf', github: 'genya0407/mruby-shelf'

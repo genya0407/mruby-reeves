@@ -1,4 +1,4 @@
-# reeves   [![Build Status](https://travis-ci.org/genya0407/reeves.svg?branch=master)](https://travis-ci.org/genya0407/reeves)
+# reeves   [![Build Status](https://travis-ci.org/genya0407/mruby-reeves.svg?branch=master)](https://travis-ci.org/genya0407/mruby-reeves)
 Reeves class
 ## install by mrbgems
 - add conf.gem line to `build_config.rb`
