@@ -1,0 +1,77 @@
+---
+mruby:
+  version: 3.0.0
+  release_no: 30000
+  git_commit: 0f45836b5954accf508f333f932741b925214471
+builds:
+  host:
+    https://github.com/genya0407/mruby-shelf.git:
+      url: https://github.com/genya0407/mruby-shelf.git
+      branch: HEAD
+      commit: 236185485f40e7e5b7a20092310b1cf103f5f754
+      version: 0.0.0
+    https://github.com/genya0407/mruby-simplehttpserver.git:
+      url: https://github.com/genya0407/mruby-simplehttpserver.git
+      branch: HEAD
+      commit: 98dd5d6faad6d303386afaf50f2612bbb74fc619
+      version: 1.0.0
+    https://github.com/iij/mruby-regexp-pcre.git:
+      url: https://github.com/iij/mruby-regexp-pcre.git
+      branch: HEAD
+      commit: 71bd16ba59239f04aefb73bb6d46d5b581f27b1b
+      version: 0.0.0
+    https://github.com/genya0407/mruby-erb.git:
+      url: https://github.com/genya0407/mruby-erb.git
+      branch: HEAD
+      commit: f0fd2e46cdeb0592ee27ab1bb3bec3be1c4a4a7c
+      version: 0.0.0
+    https://github.com/mattn/mruby-json.git:
+      url: https://github.com/mattn/mruby-json.git
+      branch: HEAD
+      commit: f99d9428025469f2400f93c53b185f65f963e507
+      version: 0.0.0
+    https://github.com/iij/mruby-tempfile.git:
+      url: https://github.com/iij/mruby-tempfile.git
+      branch: HEAD
+      commit: 9b883438547020dae328e34c8a2fe736171cd0ab
+      version: 0.0.0
+    https://github.com/Asmod4n/mruby-uri-parser.git:
+      url: https://github.com/Asmod4n/mruby-uri-parser.git
+      branch: HEAD
+      commit: 333411ea2d5c7dddfac91a557b63653d22eebd87
+      version: 0.0.0
+    https://github.com/katzer/mruby-r3.git:
+      url: https://github.com/katzer/mruby-r3.git
+      branch: HEAD
+      commit: c5b5ae647a8f04a86b4cd519273ba243bd459aec
+      version: 0.0.0
+    https://github.com/iij/mruby-env.git:
+      url: https://github.com/iij/mruby-env.git
+      branch: HEAD
+      commit: 056ae324451ef16a50c7887e117f0ea30921b71b
+      version: 0.0.0
+    https://github.com/mattn/mruby-http.git:
+      url: https://github.com/mattn/mruby-http.git
+      branch: HEAD
+      commit: 003c2af0a059c50a3546001860108ff4bf3a2cac
+      version: 0.0.0
+    https://github.com/katzer/mruby-process.git:
+      url: https://github.com/katzer/mruby-process.git
+      branch: HEAD
+      commit: 03a4f8110b4d32b5ff56f78560c255e80dcf9219
+      version: 0.0.0
+    https://github.com/iij/mruby-dir.git:
+      url: https://github.com/iij/mruby-dir.git
+      branch: HEAD
+      commit: 89dceefa1250fb1ae868d4cb52498e9e24293cd1
+      version: 0.0.0
+    https://github.com/iij/mruby-errno.git:
+      url: https://github.com/iij/mruby-errno.git
+      branch: HEAD
+      commit: b4415207ff6ea62360619c89a1cff83259dc4db0
+      version: 0.0.0
+    https://github.com/katzer/mruby-os.git:
+      url: https://github.com/katzer/mruby-os.git
+      branch: HEAD
+      commit: 8e6e1dca8284f142bea681bfe032ebe7bae3851a
+      version: 0.0.0
