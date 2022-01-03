@@ -1,5 +1,12 @@
 module Example
   class Application < Reeves::Application
+    helper do
+      def render_csv(data:, csv_headers:)
+        csv = ([csv_headers] + data).map { |line| line.join(',') }.join("\n")
+        render raw: csv, headers: { 'Content-Type' => 'application/csv' }
+      end
+    end
+    
     get '/topics/:topic' do
       topic = params['topic']
 
@@ -10,6 +17,13 @@ module Example
       render(
         json: ['topic_1', 'topic_2'], # encode as json
         headers: { 'Content-Type' => 'application/json' }
+      )
+    end
+
+    get '/topics.csv' do
+      render_csv(
+        data: [['topic_1', 'value_1'], ['topic_2', 'value_2']],
+        csv_headers: ['topic', 'value']
       )
     end
 
