@@ -53,11 +53,7 @@ module Reeves
     end
 
     def params
-      @params ||= begin
-        res = {}
-        @env['shelf.request.query_hash'].each { |k, v| res[k.to_s] = v }
-        res
-      end
+      @params ||= @env['shelf.request.query_hash'].transform_keys(&:to_s)
     end
 
     def render(erb: nil, json: nil, raw: nil, headers: {}, status: 200)
@@ -65,7 +61,6 @@ module Reeves
 
       body = if erb
         template = ERB.new(File.read(erb))
-        puts :hithere
         [template.result(self)]
       elsif json
         [JSON.dump(json)]
