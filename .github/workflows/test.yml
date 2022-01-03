@@ -1,0 +1,13 @@
+name: build
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install packages
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get -qq install rake bison git gperf
+      - name: Test
+        run: rake test
