@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        mruby_version: ["3.0.0", "2.1.2"]
+        mruby_version: ["3.0.0"]
     steps:
       - uses: actions/checkout@v2
       - name: Install packages
