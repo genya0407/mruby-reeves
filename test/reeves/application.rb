@@ -176,3 +176,19 @@ assert("Reeves::Application / render / headers") do
 
   assert_equal({ 'Content-Type' => 'application/json' }, app.call(env_for('/headers'))[1])
 end
+
+assert("Reeves:Application / helper") do
+  app = Class.new(Reeves::Application) do
+    helper do
+      def awesome_helper
+        'This is helper retval!'
+      end
+    end
+
+    get '/' do
+      render raw: awesome_helper
+    end
+  end.new.to_app
+
+  assert_equal(['This is helper retval!'], app.call(env_for('/'))[2])
+end

@@ -1,3 +1,7 @@
+# Example Application
+
+See `mrblib/example.rb`.
+
 ## Run application
 
 ```shell-session
