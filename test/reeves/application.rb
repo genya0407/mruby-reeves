@@ -1,12 +1,12 @@
 def self.env_for(path_and_query, opts = {})
-  uri = URI.parse(path_and_query)
+  uri = HTTP::Parser.new.parse_url(path_and_query)
 
   env = {
     method: 'GET',
     host: uri.host || 'example.org',
     port: (uri.port || 80).to_s,
     query_string: uri.query || '',
-    shelf_url_scheme: uri.scheme || 'http',
+    shelf_url_scheme: uri.schema || 'http',
     path: uri.path || '/',
   }.merge(opts)
 

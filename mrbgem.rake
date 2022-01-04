@@ -11,5 +11,4 @@ MRuby::Gem::Specification.new('mruby-reeves') do |spec|
   spec.add_dependency 'mruby-proc-ext'
 
   spec.add_test_dependency 'mruby-tempfile'
-  spec.add_test_dependency 'mruby-uri-parser'
 end
