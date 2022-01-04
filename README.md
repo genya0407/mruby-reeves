@@ -83,7 +83,7 @@ end
 ```
 ## Usage
 
-See `./example/mrblib/example.rb` and `test/reeves/application.rb`.
+See `./example/mrblib/example.rb` and `./test/reeves/application.rb`.
 
 ## TODOs
 
