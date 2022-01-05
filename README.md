@@ -50,6 +50,13 @@ module Example
       # You can use template engine (currently, only erb is supported)
       render erb: 'views/index.html.erb'
     end
+
+    post '/topics' do
+      id = create_topic(name: request.json['topic'])
+
+      # redirection is supported
+      redirect_to "/topics/#{id}"
+    end
   end
 end
 
@@ -87,10 +94,9 @@ See `./example/mrblib/example.rb` and `test/reeves/application.rb`.
 
 ## TODOs
 
-- redirection
 - static file serving
-
-... and other useful features.
+- middleware
+- ... and other useful features.
 
 ## License
 

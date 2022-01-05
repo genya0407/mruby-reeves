@@ -33,6 +33,14 @@ module Example
 
       render raw: request.json['data'], status: 422
     end
+
+    get '/do_redirect' do
+      redirect_to '/redirected'
+    end
+
+    get '/redirected' do
+      render raw: 'Redirected'
+    end
   end
 end
 
@@ -40,6 +48,7 @@ def __main__(argv)
   serv = SimpleHttpServer.new(
     host: 'localhost',
     port: '3000',
+    run_gc_per_request: true,
     app: Example::Application.new.to_app,
   )
   serv.run

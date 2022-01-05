@@ -74,5 +74,13 @@ module Reeves
         headers: headers
       )
     end
+
+    def redirect_to(uri, status: 303, headers: {})
+      render(
+        status: status,
+        raw: "You are redirected to #{uri.inspect}.",
+        headers: { 'Location' => "#{uri}" }.merge(headers),
+      )
+    end
   end
 end
