@@ -43,7 +43,7 @@ module Reeves
           send(method, path_for_shelf) do
             run ->(env) do
               response = action_class.new(env: env, block: block).instance_eval(&block)
-              raise 'Invalid action. You must execute `render` at the end of the action.' unless response.is_a?(Action::Response)
+              raise 'Invalid action. You must execute `render` or `redirect_to` at the end of the action.' unless response.is_a?(Action::Response)
 
               response.to_a
             end

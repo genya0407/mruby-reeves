@@ -177,6 +177,19 @@ assert("Reeves::Application / render / headers") do
   assert_equal({ 'Content-Type' => 'application/json' }, app.call(env_for('/headers'))[1])
 end
 
+assert("Reeves::Application / redirect_to") do
+  app = Class.new(Reeves::Application) do
+    get '/redirect' do
+      redirect_to '/path/to/redirect'
+    end
+  end.new.to_app
+
+  status, headers, body = app.call(env_for('/redirect'))
+  assert_equal(303, status)
+  assert_equal({ 'Location' => '/path/to/redirect' }, headers)
+  assert_equal(['You are redirected to "/path/to/redirect".'], body)
+end
+
 assert("Reeves:Application / helper") do
   app = Class.new(Reeves::Application) do
     helper do
