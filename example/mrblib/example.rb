@@ -6,6 +6,8 @@ module Example
         render raw: csv, headers: { 'Content-Type' => 'application/csv' }
       end
     end
+
+    public_dir root: 'public', urls: ['/javascript']
     
     get '/topics/:topic' do
       topic = params['topic']
