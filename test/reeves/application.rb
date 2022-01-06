@@ -221,3 +221,17 @@ assert("Reeves::Application / send_file") do
   end
 end
 
+assert("Reeves::Application / public_dir") do
+  app = Class.new(Reeves::Application) do
+    # This test is executed under ./mruby
+    # So ./test/assets is referenced as ../test/assets
+    public_dir root: '../test/assets', urls: ['/texts']
+
+    # You must define at least one action even if you define public_dir
+    get '/' do
+      render raw: ''
+    end
+  end.new.to_app
+
+  assert_equal([File.read('../test/assets/texts/static.txt')], app.call(env_for('/texts/static.txt'))[2])
+end
