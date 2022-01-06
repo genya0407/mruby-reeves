@@ -76,6 +76,8 @@ def __main__(argv)
 end
 ```
 
+See [example.rb](./example/mrblib/example.rb) and [tests](./test/reeves/application.rb) for complehensive usage.
+
 ## Install
 
 - add conf.gem line to `build_config.rb`
@@ -88,14 +90,11 @@ MRuby::Build.new do |conf|
     conf.gem :github => 'genya0407/mruby-reeves'
 end
 ```
-## Usage
-
-See `./example/mrblib/example.rb` and `./test/reeves/application.rb`.
 
 ## TODOs
 
-- static file serving
 - middleware
+- default HTML sanitizing in ERB
 - ... and other useful features.
 
 ## License
