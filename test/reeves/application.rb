@@ -205,3 +205,19 @@ assert("Reeves:Application / helper") do
 
   assert_equal(['This is helper retval!'], app.call(env_for('/'))[2])
 end
+
+assert("Reeves::Application / send_file") do
+  Tempfile.open('sendfile') do |file|
+    file.write 'This is file content'
+    file.flush
+
+    app = Class.new(Reeves::Application) do
+      get '/' do
+        send_file file.path
+      end
+    end.new.to_app
+
+    assert_equal(['This is file content'], app.call(env_for('/'))[2])
+  end
+end
+
