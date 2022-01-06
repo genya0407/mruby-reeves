@@ -41,6 +41,16 @@ module Example
     get '/redirected' do
       render raw: 'Redirected'
     end
+
+    get '/' do
+      @topics = %w[aaa bbb ccc]
+
+      render erb: 'views/index.html.erb'
+    end
+
+    get '/application.css' do
+      send_file 'assets/application.css'
+    end
   end
 end
 

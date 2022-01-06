@@ -42,7 +42,14 @@ module Reeves
 
           send(method, path_for_shelf) do
             run ->(env) do
-              response = action_class.new(env: env, block: block).instance_eval(&block)
+              begin
+                response = action_class.new(env: env, block: block).instance_eval(&block)
+              rescue => e
+                $stderr.puts "#{e.message}"
+                e.backtrace.each { |l| $stderr.puts l }
+                break render(raw: 'Internal server error', status: 500)
+              end
+
               raise 'Invalid action. You must execute `render` or `redirect_to` at the end of the action.' unless response.is_a?(Action::Response)
 
               response.to_a

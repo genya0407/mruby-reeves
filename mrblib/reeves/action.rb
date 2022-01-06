@@ -82,5 +82,14 @@ module Reeves
         headers: { 'Location' => "#{uri}" }.merge(headers),
       )
     end
+
+    def send_file(filename, status: 200, headers: {})
+      render(
+        status: status,
+        raw: File.read(filename),
+        headers: headers, # TODO: mime type
+      )
+    end
   end
 end
+
