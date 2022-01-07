@@ -93,7 +93,6 @@ end
 
 ## TODOs
 
-- middleware
 - default HTML sanitizing in ERB
 - ... and other useful features.
 
