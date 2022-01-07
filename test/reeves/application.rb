@@ -235,3 +235,29 @@ assert("Reeves::Application / public_dir") do
 
   assert_equal([File.read('../test/assets/texts/static.txt')], app.call(env_for('/texts/static.txt'))[2])
 end
+
+assert("Reeves::Application / use") do
+  middleware = Class.new do
+    def initialize(app, appendix = 'default appendix')
+      @app = app
+      @appendix = appendix
+    end
+
+    def call(env)
+      status, headers, body = @app.call(env)
+      [status, headers, body + [@appendix]]
+    end
+  end
+
+  app = Class.new(Reeves::Application) do
+    use middleware
+    use middleware, 'modified appendix'
+
+    get '/' do
+      render raw: 'This is original body'
+    end
+  end.new.to_app
+
+  assert_equal(['This is original body', 'default appendix', 'modified appendix'].sort, app.call(env_for('/'))[2].sort)
+end
+

@@ -8,6 +8,13 @@ module Reeves
       def public_dir_setting
         @public_dir_setting ||= []
       end
+
+      def middleware_settings
+        @middleware_settings ||= [
+          { middleware: Reeves::ExceptionCatcher, args: [] },
+          { middleware: Shelf::QueryParser, args: [] },
+        ]
+      end
       
       %i[get post delete put].each do |method|
         define_method method do |path, &block|
@@ -17,6 +24,10 @@ module Reeves
 
       def public_dir(root:, urls:)
         public_dir_setting << { root: root, urls: urls }
+      end
+
+      def use(middleware, *args)
+        middleware_settings << { middleware: middleware, args: args }
       end
 
       def helper(&block)
@@ -33,10 +44,13 @@ module Reeves
       # そのため、ここで実行してローカル変数に束縛する必要がある
       mapping = self.class.mapping
       public_dir_setting = self.class.public_dir_setting
+      middleware_settings = self.class.middleware_settings
       action_class = Class.new(Action, &self.class.helper_block)
 
       Shelf::Builder.app do
-        use Shelf::QueryParser
+        middleware_settings.each do |setting|
+          use setting[:middleware], *setting[:args]
+        end
 
         public_dir_setting.each do |setting|
           use Shelf::Static, root: setting[:root], urls: setting[:urls]
@@ -56,14 +70,7 @@ module Reeves
 
           send(method, path_for_shelf) do
             run ->(env) do
-              begin
-                response = action_class.new(env: env, block: block).instance_eval(&block)
-              rescue => e
-                $stderr.puts "#{e.message}"
-                e.backtrace.each { |l| $stderr.puts l }
-                break render(raw: 'Internal server error', status: 500)
-              end
-
+              response = action_class.new(env: env, block: block).instance_eval(&block)
               raise 'Invalid action. You must execute `render` or `redirect_to` at the end of the action.' unless response.is_a?(Action::Response)
 
               response.to_a
