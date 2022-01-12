@@ -17,7 +17,7 @@ module Reeves
       end
 
       def body
-        env['genya0407.request_body']
+        @body ||= env[Shelf::SHELF_INPUT].read
       end
 
       def json
