@@ -93,10 +93,9 @@ assert("Reeves::Application / request") do
     end
   end.new.to_app
 
-  # fix genya0407.request_body after Shelf supports request body officialy.
   assert_equal(
     ['ok this is body'],
-    app.call(env_for('/data', method: 'post', 'genya0407.request_body' => 'this is body'))[2]
+    app.call(env_for('/data', method: 'post', Shelf::SHELF_INPUT => StringIO.new('this is body')))[2]
   )
 end
 
@@ -107,10 +106,9 @@ assert("Reeves::Application / request / json") do
     end
   end.new.to_app
 
-  # fix genya0407.request_body after Shelf supports request body officialy.
   assert_equal(
     ['ok value_1'],
-    app.call(env_for('/data', method: 'post', 'genya0407.request_body' => JSON.dump(key_1: 'value_1')))[2]
+    app.call(env_for('/data', method: 'post', Shelf::SHELF_INPUT => StringIO.new(JSON.dump(key_1: 'value_1'))))[2]
   )
 end
 
@@ -121,7 +119,6 @@ assert("Reeves::Application / request / headers") do
     end
   end.new.to_app
 
-  # fix genya0407.request_body after Shelf supports request body officialy.
   assert_equal(
     ['ok value_1'],
     app.call(env_for('/header', method: :get, 'header_1' => 'value_1'))[2]
