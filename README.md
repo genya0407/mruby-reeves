@@ -76,7 +76,7 @@ def __main__(argv)
 end
 ```
 
-See [example.rb](./example/mrblib/example.rb) and [tests](./test/reeves/application.rb) for complehensive usage.
+See [example.rb](./example/mrblib/example.rb) and [tests](./test/reeves/application.rb) for comprehensive usage.
 
 ## Install
 
