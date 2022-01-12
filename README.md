@@ -91,11 +91,6 @@ MRuby::Build.new do |conf|
 end
 ```
 
-## TODOs
-
-- default HTML sanitizing in ERB
-- ... and other useful features.
-
 ## License
 
 under the MIT License:
